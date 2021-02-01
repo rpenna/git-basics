@@ -60,4 +60,4 @@ Podemos consultar todas as configurações do git em todos os níveis através d
 ```
 git config --list
 ```
-É necessário destacar que, em caso de conflito de configuração entre os diferentes níveis, a de projeto sempre terá prioridade, enquando a de usuário se sobrepõe apenas à de sistema.
+É necessário destacar que, em caso de conflito de configuração entre os diferentes níveis, a de projeto sempre terá prioridade, enquanto a de usuário se sobrepõe apenas à de sistema.

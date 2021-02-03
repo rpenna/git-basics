@@ -119,6 +119,24 @@ Para retomar um stash, temos duas opções:
     ```
 Caso tenha mais de um stash na lista, devemos especificar a qual nos referimos.
 
+# Convenções de commit
+Existe uma [convenção](https://www.conventionalcommits.org/en/v1.0.0/#specification) bastante popular para padronização de commits, criado pela comunidade do angular. Ela prevê que as mensagens do commit assumam o seguinte formato:
+```
+<Tipo>[escopo opcional]: <descrição>
+[corpo da mensagem opcional]
+[footer opcional]
+```
+O tipo pode assumir os seguintes valores:
+* __build__: mudanças que afetam a configuração do sistema ou dependências externas.
+* __ci__: alterações em arquivos e scripts de Integração Contínua (CI).
+* __docs__: alterações na documentação.
+* __feat__: uma nova funcionalidade foi criada.
+* __fix__: um bug foi corrigido.
+* __perf__: uma alteração no código que melhora a performance do software.
+* __refactor__: uma alteração no código que não corrige um bug nem cria novas funcionalidades.
+* __style__: mudanças que não alteram a semântica do código (espaços em branco, formatação, etc)>
+* __test__: adição de novos testes ou correção de testes existentes.
+* 
 # Ignorando arquivos
 Podemos configurar o git para ignorar determinados arquivos de nosso projeto, a fim de que eles não sejam comitados. Para isso, colocamos na pasta raiz do projeto o arquivo _.gitignore_, que contém os nomes e padrões regex de arquivos a serem ignorados.
 

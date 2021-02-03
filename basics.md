@@ -181,3 +181,46 @@ Também é possível inserir cores no log. Para isso, inserimos ```%C(<cor>)``` 
 ```
 git log --pretty=format:'%C(yellow)%h %C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
 ```
+
+# Tag
+Podemos marcar nossos commits com tags, a fim de navegar mais facilmente em diferentes pontos do nosso sistema. As tags podem ser de dois tipos:
+
+* __Lightweight__: mais simples, sem uma mensagem dentro. Fica associada ao último commit. Não recomendável.
+  Para criar uma tag lightweight, rodamos:
+  ```
+  git tag <nome_da_tag>
+  ```
+* __Annotated__: é criada junto a uma mensagem, que acaba criando um commit. Recomenda-se principalmente quando vamos subir para produção. Para criar, usamos:
+  ```
+  git tag <nome_da_tag> -m "<mensagem_da_tag>"
+  ```
+
+Para consultar dados de uma tag, basta executar:
+```
+git show <nome_da_tag>
+```
+Podemos também associar tags a commits antigos através do uso da flag ```-a```:
+```
+git tag -a "<nome_da_tag>" -m "<mensagem_da_tag>" <hash_do_commit>
+```
+Por padrão, quando fazemos um push o git não envia as tags. Para isso, devemos informá-lo que queremos subir as tags também, rodando:
+```
+git push origin main --tags
+```
+Esse comando, porém, envia todas as tags. Mas o recomendado é que se suba apenas as tags anotadas. Para isso, rode:
+```
+git push origin main --follow-tags
+```
+Para que o git faça push automaticamente das tags anotadas, podemos alterar as configurações do usuário, inserindo a seguinte instrução:
+```
+[push]
+  followTags = true
+```
+Por fim, podemos remover uma tag. Localmente, utilizamos a flag ```-d```:
+```
+git tag -d "<nome_da_tag>"
+```
+Para remover também do repositório remoto, executamos:
+```
+git push --delete origin "<nome_da_tag>"
+```

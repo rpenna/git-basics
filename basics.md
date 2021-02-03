@@ -136,7 +136,7 @@ O tipo pode assumir os seguintes valores:
 * __refactor__: uma alteração no código que não corrige um bug nem cria novas funcionalidades.
 * __style__: mudanças que não alteram a semântica do código (espaços em branco, formatação, etc)>
 * __test__: adição de novos testes ou correção de testes existentes.
-* 
+
 # Ignorando arquivos
 Podemos configurar o git para ignorar determinados arquivos de nosso projeto, a fim de que eles não sejam comitados. Para isso, colocamos na pasta raiz do projeto o arquivo _.gitignore_, que contém os nomes e padrões regex de arquivos a serem ignorados.
 
@@ -154,4 +154,30 @@ Como o comando que foi resumido pertence ao próprio git, poderíamos também ig
 ```
 [alias]
   s = status -s
+```
+
+# Log
+Podemos listar todos os commits desde o último push no projeto com o comando
+```
+git log
+```
+POrém, ele contém muitas informações. O comando abaixo traz de forma resumida os caracteres iniciais do hash e a mensagem de cada commit, tudo em uma única linha:
+```
+git log --oneline
+```
+Podemos ainda configurar a forma de apresentação do log através da flag ```--pretty``` com o parâmetro format acompanhado das customizações desejadas.
+```
+git log --pretty=format:'<customizações>'
+```
+Entre as opções de customização, temos:
+* %H: a hash completa
+* %h: a hash reduzida
+* %cn: commiter name, o nome do autor do commit
+* %d: a branch onde se deu o commit
+* %s: a mensagem do commit
+* %cr: data do commit
+  
+Também é possível inserir cores no log. Para isso, inserimos ```%C(<cor>)``` onde desejamos inserir a cor. Diante disso, podemos personalizar nosso log como no comando abaixo: 
+```
+git log --pretty=format:'%C(yellow)%h %C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
 ```

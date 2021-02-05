@@ -190,7 +190,7 @@ Podemos marcar nossos commits com tags, a fim de navegar mais facilmente em dife
   ```
   git tag <nome_da_tag>
   ```
-* __Annotated__: é criada junto a uma mensagem, que acaba criando um commit. Recomenda-se principalmente quando vamos subir para produção. Para criar, usamos:
+* __Annotated__: é criada junto a uma mensagem. Recomenda-se principalmente quando vamos subir para produção. Para criar, usamos:
   ```
   git tag <nome_da_tag> -m "<mensagem_da_tag>"
   ```
@@ -223,4 +223,34 @@ git tag -d "<nome_da_tag>"
 Para remover também do repositório remoto, executamos:
 ```
 git push --delete origin "<nome_da_tag>"
+```
+
+# Removendo arquivos da staged area
+Podemos remover um arquivo específico da staged area:
+```
+git reset <nome_do_arquivo>
+```
+Ou todos os arquivos da staged area:
+```
+git reset
+```
+
+# Como desfazer commits
+Existem três formas de desfazer commits:
+* __Soft__: os arquivos voltam para o estados que estavam imediatamente antes do último commit desfeito, ou seja, com os arquivos na staged area.
+  ```
+  git reset <hash_do_commit_onde_deseja_voltar> --soft
+  ```
+* __Mixed__: os arquivos voltam para os estados que estavam imediatamente antes de serem adicionados à staged area do commit mais antigo desfeito.
+  ```
+  git reset <hash_do_commit_onde_deseja_voltar> --mixed
+  ```
+* __Hard__: todas as alterações de todos os commits desfeitos são apagadas. Em outras palavras, são mantidos exatamente os mesmos status que se encontravam logo após a realização do último commit remanescente, o mais recente entre os que não foram desfeitos.
+  ```
+  git reset <hash_do_commit_onde_deseja_voltar> --hard
+  ```
+
+Em todos os casos, ao invés de fazer referência direta ao hash do commit para o qual desejamos voltar, podemos dizer ao git quantos commits antes do último queremos voltar. O commit mais recente é conhecido como HEAD, então passamos ele com a quantidade de commits a serem desfeitos, separados por um til: ```HEAD~<quantidade>```. Por exemplo, caso o objetivo seja desfazer apenas o commit mais recente, rodamos:
+```
+git reset HEAD~1 --<forma_desejada>
 ```

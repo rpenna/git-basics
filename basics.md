@@ -254,3 +254,24 @@ Em todos os casos, ao invés de fazer referência direta ao hash do commit para 
 ```
 git reset HEAD~1 --<forma_desejada>
 ```
+
+# Desfazendo alterações do commit atual
+Podemos desfazer todas as alterações do commit onde estamos trabalhando atualmente. Ao rodar o comando reset sem especificar uma hash, ele considera por padrão o HEAD sem a quantidade, ou seja, o commit mais recente. O que queremos fazer com este commit vai depender da forma de reset que passamos na flag. 
+
+Se passarmos mixed, que é o padrão caso nenhuma flag seja especificada, os arquivos ficam na staged area, ou seja, nada acontece. Ao passar a flag hard, as alterações em arquivos após o commit serão todas apagadas, mas arquivos novos em status __untracked__ não serão apagados, pois o git ainda não os conhece.
+
+# Como desfazer um commit sem perder os que ocorreram após
+O git permite desfazer um commit antigo apenas revertendo o que ele fazia, isto é, excluíndo as linhas que ele adicionou e acrescentando as linhas que ele removeu. Para isso, usamos o comando revert, que nada mais é que um novo commit que faz essas exclusões e adições:
+```
+git revert <hash_do_commit>
+```
+Normalmente, principalmente em commits mais antigos, o comando gera um conflito, pois é bastante provável que as linhas impactadas tenham sido alteradas em commits posteriores. Para solucionar isso, é preciso resolver os conflitos e fazer um novo commit. 
+
+Caso não haja conflitos, o próprio revert realiza este novo commit, mostrando uma mensagem no editor padrão do git informando que a operaçao foi realizada com sucesso. Pra evitar esta mensagem, podemos passar a flag --no-edit:
+```
+git revert <hash_do_commit> --no-edit
+```
+Também podemos fazer um revert forçando que ele __não__ faça um commit caso a reversão seja um sucesso usando a flag --no-commit:
+```
+git revert <hash_do_commit> --no-commit
+```

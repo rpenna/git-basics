@@ -275,3 +275,52 @@ Também podemos fazer um revert forçando que ele __não__ faça um commit caso 
 ```
 git revert <hash_do_commit> --no-commit
 ```
+
+# Desfazendo alterações em arquivos modified
+Arquivos que nao estão na staged area mas foram modificados em relação ao último commit podem ter suas alterações desfeitas utilizando o ```checkout```:
+```
+git checkout <nome_do_arquivo>
+```
+Ou podemos fazer isso para todos os arquivos modificados ao invés d eum específico:
+```
+git checkout .
+```
+Porém, isso apenas pode ser feito com arquivos já conhecidos pelo git, ou seja, arquivos __untracked__ não são afetados, até pq não estavam no último commit.
+
+# Desfazendo alterações em arquivos untracked (exclusão)
+Também existe um comando com comportamento parecido para arquivos untracked, porém ele acaba excluíndo o arquivo:
+```
+git clean -f
+```
+Isso remote todos os arquivos untracked do projeto. Para rodá-lo sem necessitar forçar a exclusão (flag ```-f```), devemos mudar o parâmetro ```clean.requireForce``` para ```false``` nas configurações do git.
+
+Porém, este comando não exclui arquivos untracked dentro de pastas untracked. Para isso, precisamos também da flag ```-d```:
+```
+git clean -fd
+```
+
+# Retornando a um commit anterior sem desfazer o que foi feito em seguida
+Podemos retomar uma versão antiga do nosso projeto:
+```
+git checkout <hash_do_commit ou tag>
+```
+Isso vai fazer com que o código fique igual ao commit em questão, mas em uma nova branch temporária criada pelo git, chamada de desconectada. Caso o usuário saia desas branch, ela é apagada imediatamente. 
+
+Para podermos alterar essa branch desconectada, precisamos criar uma nova branch a partir dela, também usando ```checkout```:
+```
+git checkout -b <nome_da_nova_branch>
+```
+Dessa vez uma nova branch de fato será criada, a partir da branch temporária criada pelo checkout de um commit anterior.
+
+# Verificando as branchs do projeto
+Podemos consultar as branchs existentes:
+```
+git branch
+```
+A branch que estiver com um asterisco é a ativa no editor no momento.
+
+# Mudando de branch
+A mudança da branch também se dá pelo checkout:
+```
+git checkout <nome_da_branch>
+```

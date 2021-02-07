@@ -299,6 +299,18 @@ Porém, este comando não exclui arquivos untracked dentro de pastas untracked. 
 git clean -fd
 ```
 
+# Removendo arquivos que já haviam sido commitados anteriormente
+Basta usar o comando ```rm```:
+```
+git rm <nome_do_arquivo>
+```
+Ao rodar este comando, o arquivo é excluído, mas ainda é possível retomá-lo através de um ```reset```. Ao executar ```git status```, ele aparecerá na staged area como __deleted__, aguardando um commit para sumir de vez do projeto.
+
+Este comando também não exclui arquivos que estavam dentro de uma pasta. Para isso, temos que explicitamente informar ao git que queremos fazer a remoção recursivamente:
+ ```
+ git rm <nome_do_arquivo> -r
+ ```
+
 # Retornando a um commit anterior sem desfazer o que foi feito em seguida
 Podemos retomar uma versão antiga do nosso projeto:
 ```
@@ -311,6 +323,15 @@ Para podermos alterar essa branch desconectada, precisamos criar uma nova branch
 git checkout -b <nome_da_nova_branch>
 ```
 Dessa vez uma nova branch de fato será criada, a partir da branch temporária criada pelo checkout de um commit anterior.
+
+# Como solicitar ao git para ignorar arquivos que já foram commitados anteriormente
+Caso deseje que um arquivo já commitado em outras ocasiões deise de ser inspecionado pelo git, use:
+```
+git rm <nome_do_arquivo> -cached
+```
+Assim, mesmo sejam realizadas modificações no arquivo, o ```git status``` vai ignorá-las. 
+
+Este comando é particularmente útil quando adicionamos o gitignore tardiamente em nosso projeto, pois os arquivos que, segundo ele, deveriam ser ignorados seguirão sendo levados em conta pelo git, pois estavam no último commit.
 
 # Verificando as branchs do projeto
 Podemos consultar as branchs existentes:

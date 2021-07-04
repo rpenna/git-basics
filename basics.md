@@ -134,7 +134,7 @@ O tipo pode assumir os seguintes valores:
 * __fix__: um bug foi corrigido.
 * __perf__: uma alteração no código que melhora a performance do software.
 * __refactor__: uma alteração no código que não corrige um bug nem cria novas funcionalidades.
-* __style__: mudanças que não alteram a semântica do código (espaços em branco, formatação, etc)>
+* __style__: mudanças que não alteram a semântica do código (espaços em branco, formatação, etc).
 * __test__: adição de novos testes ou correção de testes existentes.
 
 # Ignorando arquivos

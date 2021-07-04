@@ -325,7 +325,7 @@ git checkout -b <nome_da_nova_branch>
 Dessa vez uma nova branch de fato será criada, a partir da branch temporária criada pelo checkout de um commit anterior.
 
 # Como solicitar ao git para ignorar arquivos que já foram commitados anteriormente
-Caso deseje que um arquivo já commitado em outras ocasiões deise de ser inspecionado pelo git, use:
+Caso deseje que um arquivo já commitado em outras ocasiões deixe de ser inspecionado pelo git, use:
 ```
 git rm <nome_do_arquivo> -cached
 ```

@@ -161,7 +161,7 @@ Podemos listar todos os commits desde o último push no projeto com o comando
 ```
 git log
 ```
-POrém, ele contém muitas informações. O comando abaixo traz de forma resumida os caracteres iniciais do hash e a mensagem de cada commit, tudo em uma única linha:
+Porém, ele contém muitas informações. O comando abaixo traz de forma resumida os caracteres iniciais do hash e a mensagem de cada commit, tudo em uma única linha:
 ```
 git log --oneline
 ```
@@ -281,18 +281,18 @@ Arquivos que nao estão na staged area mas foram modificados em relação ao úl
 ```
 git checkout <nome_do_arquivo>
 ```
-Ou podemos fazer isso para todos os arquivos modificados ao invés d eum específico:
+Ou podemos fazer isso para todos os arquivos modificados ao invés de um específico:
 ```
 git checkout .
 ```
-Porém, isso apenas pode ser feito com arquivos já conhecidos pelo git, ou seja, arquivos __untracked__ não são afetados, até pq não estavam no último commit.
+Porém, isso apenas pode ser feito com arquivos já conhecidos pelo git, ou seja, arquivos __untracked__ não são afetados, até porque não estavam no último commit.
 
 # Desfazendo alterações em arquivos untracked (exclusão)
 Também existe um comando com comportamento parecido para arquivos untracked, porém ele acaba excluíndo o arquivo:
 ```
 git clean -f
 ```
-Isso remote todos os arquivos untracked do projeto. Para rodá-lo sem necessitar forçar a exclusão (flag ```-f```), devemos mudar o parâmetro ```clean.requireForce``` para ```false``` nas configurações do git.
+Isso remove todos os arquivos untracked do projeto. Para rodá-lo sem necessitar forçar a exclusão (flag ```-f```), devemos mudar o parâmetro ```clean.requireForce``` para ```false``` nas configurações do git.
 
 Porém, este comando não exclui arquivos untracked dentro de pastas untracked. Para isso, precisamos também da flag ```-d```:
 ```
